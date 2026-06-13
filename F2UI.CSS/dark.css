@@ -1,0 +1,267 @@
+/* 颜色变量定义 */
+:root {
+	/* 基础颜色 */
+	--body-background: #1a1a2e;
+	--body-background-gradient: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+	--body-foreground: #E4E6EB;
+	--heading-foreground: #7DD3FC;
+	--text-foreground: #B8BBC4;
+	--card-background: #252d4a;
+	--card-border-brush: #38BDF8;
+	--card-heading-foreground: #38BDF8;
+	--tag-background: #1e3a5f;
+	--tag-foreground: #7DD3FC;
+
+	/* 按钮相关 */
+	--button-background: linear-gradient(to bottom right, #38BDF8 0%, #0EA5E9 100%);
+	--button-hover-background: linear-gradient(to bottom right, #0EA5E9 0%, #0284C7 100%);
+	--button-disabled-background: linear-gradient(to bottom right, #3d4a6a 0%, #2d3a5c 100%);
+	--button-foreground: #FFFFFF;
+
+	/* 控件通用 */
+	--control-background: #252d4a;
+	--control-border-brush: #38BDF8;
+	--control-hover-background: #2d3a5c;
+	--control-pressed-background: #1a1a2e;
+	--control-foreground: #E4E6EB;
+	--control-disabled-foreground: #B8BBC4;
+
+	/* 选择/高亮 */
+	--selection-background: #38BDF8;
+	--selection-foreground: #FFFFFF;
+	--highlight-background: #7DD3FC;
+
+	/* 开关 */
+	--toggle-on-background: #38BDF8;
+	--toggle-off-background: #475569;
+	--toggle-thumb-background: #FFFFFF;
+
+	/* 通用尺寸/样式 */
+	--corner-radius-sm: 2px;
+	--corner-radius-md: 4px;
+	--corner-radius-lg: 7px;
+	--border-width: 1px;
+	--button-height: 24px;
+}
+
+/* 窗口（对应WPF Window） */
+body {
+	background: var(--body-background-gradient);
+	color: var(--body-foreground);
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+/* 按钮（对应WPF Button） */
+button {
+	margin: 0;
+	padding: 2px 6px;
+	border-width: var(--border-width);
+	border-style: solid;
+	border-color: var(--control-border-brush);
+	background: var(--control-background);
+	color: var(--control-foreground);
+	cursor: pointer;
+	outline: none;
+	height: var(--button-height);
+	border-radius: var(--corner-radius-md);
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+}
+
+button:hover {
+	background: var(--control-hover-background);
+	border-color: var(--toggle-on-background);
+}
+
+button:active {
+	background: var(--control-pressed-background);
+	border-color: var(--toggle-on-background);
+}
+
+button:disabled {
+	background: var(--button-disabled-background);
+	color: var(--control-disabled-foreground);
+	cursor: not-allowed;
+}
+
+/* 下拉框（对应WPF ComboBox） */
+select {
+	background: var(--control-background);
+	color: var(--control-foreground);
+	border: var(--border-width) solid var(--control-border-brush);
+	padding: 2px 4px;
+	cursor: pointer;
+	height: var(--button-height);
+	outline: none;
+	border-radius: var(--corner-radius-md);
+	appearance: none;
+	position: relative;
+	padding-right: 20px;
+	box-sizing: border-box;
+}
+
+/* 模拟ComboBox下拉箭头 */
+.select-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.select-wrapper::after {
+	content: "";
+	position: absolute;
+	right: 8px;
+	top: 50%;
+	transform: translateY(-50%) rotate(0deg);
+	width: 8px;
+	height: 8px;
+	border-left: 2px solid var(--control-foreground);
+	border-bottom: 2px solid var(--control-foreground);
+	transform: translateY(-50%) rotate(-45deg);
+	pointer-events: none;
+}
+
+/* 下拉选项（对应WPF ComboBoxItem） */
+option {
+	padding: 2px 4px;
+	background: var(--control-background);
+	color: var(--control-foreground);
+	border-radius: var(--corner-radius-sm);
+}
+
+option:checked {
+	background: var(--selection-background);
+	color: var(--selection-foreground);
+}
+
+option:hover,
+option:focus {
+	background: var(--highlight-background);
+	color: black;
+}
+
+/* 文本框（对应WPF TextBox） */
+input[type="text"],
+textarea {
+	background: var(--control-background);
+	color: var(--control-foreground);
+	border: var(--border-width) solid var(--control-border-brush);
+	padding: 2px 4px;
+	outline: none;
+	border-radius: var(--corner-radius-md);
+	box-sizing: border-box;
+}
+
+input[type="text"]:hover,
+textarea:hover {
+	border-color: var(--toggle-on-background);
+}
+
+input[type="text"]:focus,
+textarea:focus {
+	border-color: var(--toggle-on-background);
+}
+
+/* 复选框（对应WPF CheckBox） */
+input[type="checkbox"] {
+	color: var(--control-foreground);
+	cursor: pointer;
+}
+
+/* 进度条（对应WPF ProgressBar） */
+progress {
+	background: var(--control-hover-background);
+	border: var(--border-width) solid var(--control-border-brush);
+	border-radius: var(--corner-radius-md);
+	height: var(--button-height);
+}
+
+progress::-webkit-progress-bar {
+	background: var(--control-hover-background);
+	border-radius: var(--corner-radius-md);
+}
+
+progress::-webkit-progress-value {
+	background: var(--toggle-on-background);
+	border-radius: var(--corner-radius-md);
+}
+
+/* 标签页容器（对应WPF TabControl） */
+.tab-control {
+	border-bottom: var(--border-width) solid var(--control-border-brush);
+	padding: 0;
+	background: var(--body-background);
+}
+
+/* 标签项（对应WPF TabItem） */
+.tab-item {
+	display: inline-block;
+	padding: 6px 15px;
+	background: transparent;
+	border-bottom: 3px solid transparent;
+	color: var(--control-foreground);
+	cursor: pointer;
+	margin-right: 2px;
+	outline: none;
+	border-radius: 0;
+}
+
+.tab-item:hover {
+	background: var(--control-hover-background);
+}
+
+.tab-item.selected {
+	background: var(--control-hover-background);
+	border-bottom-color: var(--toggle-on-background);
+	color: var(--control-foreground);
+}
+
+/* 标签（对应WPF Label） */
+label {
+	color: var(--control-foreground);
+}
+
+/* 分组框（对应WPF GroupBox） */
+fieldset {
+	border: var(--border-width) solid var(--control-border-brush);
+	color: var(--control-foreground);
+	background: var(--control-background);
+	border-radius: var(--corner-radius-md);
+	padding: 8px;
+}
+
+legend {
+	padding: 0 8px;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+
+/* 滚动条（对应WPF ScrollBar） */
+::-webkit-scrollbar {
+	width: 14px;
+	height: 14px;
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--toggle-on-background);
+	border-radius: var(--corner-radius-lg);
+	padding: 2px;
+	margin: 3px 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	opacity: 0.8;
+}
+
+::-webkit-scrollbar-thumb:active {
+	opacity: 1;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}

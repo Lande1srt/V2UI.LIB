@@ -1,0 +1,105 @@
+{
+  "name": "F2CS.UI Styles",
+  "description": "从 ISRTOOL 项目提取的 UI 样式库",
+  "version": "1.0.0",
+  "themes": {
+    "light": {
+      "colors": {
+        "BodyBackground": "#F0F9FF",
+        "BodyBackgroundGradientStart": "#F0F9FF",
+        "BodyBackgroundGradientEnd": "#E0F2FE",
+        "BodyForeground": "#1F2937",
+        "HeadingForeground": "#0C4A6E",
+        "TextForeground": "#4B5563",
+        "CardBackground": "#FFFFFF",
+        "CardBorderBrush": "#BAE6FD",
+        "CardHeadingForeground": "#0369A1",
+        "TagBackground": "#E0F2FE",
+        "TagForeground": "#0C4A6E",
+        "ButtonBackgroundStart": "#38BDF8",
+        "ButtonBackgroundEnd": "#0EA5E9",
+        "ButtonHoverBackgroundStart": "#0EA5E9",
+        "ButtonHoverBackgroundEnd": "#0284C7",
+        "ButtonDisabledBackgroundStart": "#7DD3FC",
+        "ButtonDisabledBackgroundEnd": "#38BDF8",
+        "ButtonForeground": "#FFFFFF",
+        "ControlBackground": "#FFFFFF",
+        "ControlBorderBrush": "#BAE6FD",
+        "ControlHoverBackground": "#F0F9FF",
+        "ControlPressedBackground": "#E0F2FE",
+        "ControlForeground": "#1F2937",
+        "ControlDisabledForeground": "#4B5563",
+        "SelectionBackground": "#38BDF8",
+        "SelectionForeground": "#FFFFFF",
+        "HighlightBackground": "#7DD3FC",
+        "ToggleOnBackground": "#38BDF8",
+        "ToggleOffBackground": "#D1D5DB",
+        "ToggleThumbBackground": "#FFFFFF"
+      }
+    },
+    "dark": {
+      "colors": {
+        "BodyBackground": "#1a1a2e",
+        "BodyBackgroundGradientStart": "#1a1a2e",
+        "BodyBackgroundGradientEnd": "#16213e",
+        "BodyForeground": "#E4E6EB",
+        "HeadingForeground": "#7DD3FC",
+        "TextForeground": "#B8BBC4",
+        "CardBackground": "#252d4a",
+        "CardBorderBrush": "#38BDF8",
+        "CardHeadingForeground": "#38BDF8",
+        "TagBackground": "#1e3a5f",
+        "TagForeground": "#7DD3FC",
+        "ButtonBackgroundStart": "#38BDF8",
+        "ButtonBackgroundEnd": "#0EA5E9",
+        "ButtonHoverBackgroundStart": "#0EA5E9",
+        "ButtonHoverBackgroundEnd": "#0284C7",
+        "ButtonDisabledBackgroundStart": "#3d4a6a",
+        "ButtonDisabledBackgroundEnd": "#2d3a5c",
+        "ButtonForeground": "#FFFFFF",
+        "ControlBackground": "#252d4a",
+        "ControlBorderBrush": "#38BDF8",
+        "ControlHoverBackground": "#2d3a5c",
+        "ControlPressedBackground": "#1a1a2e",
+        "ControlForeground": "#E4E6EB",
+        "ControlDisabledForeground": "#B8BBC4",
+        "SelectionBackground": "#38BDF8",
+        "SelectionForeground": "#FFFFFF",
+        "HighlightBackground": "#7DD3FC",
+        "ToggleOnBackground": "#38BDF8",
+        "ToggleOffBackground": "#475569",
+        "ToggleThumbBackground": "#FFFFFF"
+      }
+    }
+  },
+  "styles": {
+    "Button": {
+      "Margin": "0,0,0,0",
+      "Padding": "6,2",
+      "BorderThickness": "1",
+      "Height": "24",
+      "CornerRadius": "4"
+    },
+    "ComboBox": {
+      "Padding": "4,2",
+      "Height": "24",
+      "CornerRadius": "4"
+    },
+    "TextBox": {
+      "Padding": "4,2",
+      "CornerRadius": "4"
+    },
+    "GroupBox": {
+      "BorderThickness": "1",
+      "CornerRadius": "4"
+    },
+    "ScrollBar": {
+      "Width": "14",
+      "Height": "14"
+    },
+    "TabItem": {
+      "Padding": "15,6",
+      "BorderThickness": "0,0,0,3"
+    }
+  }
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPF 主题 CSS 转译演示</title>
+    <!-- 浅色主题样式（默认启用） -->
+    <link id="light-css" rel="stylesheet" href="light.css">
+    <!-- 深色主题样式（默认禁用） -->
+    <link id="dark-css" rel="stylesheet" href="dark.css" disabled>
+
+    <style>
+        /* 仅做页面布局，不参与主题色 */
+        * {
+            box-sizing: border-box;
+        }
+        .page-wrap {
+            max-width: 760px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .switch-bar {
+            margin-bottom: 28px;
+            display: flex;
+            gap: 10px;
+        }
+        .section {
+            margin-bottom: 28px;
+        }
+        .row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+        /* 标签页内容区 */
+        .tab-content {
+            padding: 16px;
+            border: 1px solid var(--control-border-brush);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            background: var(--control-background);
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <h2 class="section">WPF 资源字典 → CSS 主题切换演示</h2>
+
+        <!-- 主题切换按钮 -->
+        <div class="switch-bar">
+            <button onclick="setTheme('light')">浅色主题</button>
+            <button onclick="setTheme('dark')">深色主题</button>
+        </div>
+
+        <!-- 基础控件组 -->
+        <fieldset class="section">
+            <legend>基础控件演示</legend>
+            <div class="row">
+                <button>普通按钮</button>
+                <button disabled>禁用按钮</button>
+            </div>
+            <div class="row">
+                <label for="input1">文本框：</label>
+                <input type="text" id="input1" placeholder="请输入内容">
+            </div>
+            <div class="row">
+                <label>下拉框：</label>
+                <!-- 必须包裹一层以实现自定义下拉箭头 -->
+                <div class="select-wrapper">
+                    <select>
+                        <option>选项 A</option>
+                        <option>选项 B</option>
+                        <option>选项 C</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <label>
+                    <input type="checkbox">
+                    复选框选项
+                </label>
+            </div>
+            <div class="row">
+                <label style="min-width: 60px;">进度条：</label>
+                <progress value="65" max="100" style="width: 240px;"></progress>
+            </div>
+        </fieldset>
+
+        <!-- 标签页演示 -->
+        <div class="section">
+            <div class="tab-control">
+                <span class="tab-item selected" data-pane="pane1">标签页 1</span>
+                <span class="tab-item" data-pane="pane2">标签页 2</span>
+                <span class="tab-item" data-pane="pane3">标签页 3</span>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="pane1">
+                    这是第一个标签页的内容区域，用于演示 TabControl 与 TabItem 的主题样式。
+                </div>
+                <div class="tab-pane" id="pane2">
+                    切换主题后，标签页的背景、边框、文字颜色会同步更新，与 WPF 主题逻辑一致。
+                </div>
+                <div class="tab-pane" id="pane3">
+                    选中态的底部边框使用主题强调色，悬浮态使用浅色背景填充。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== 主题切换逻辑 ==========
+        const lightLink = document.getElementById('light-css');
+        const darkLink = document.getElementById('dark-css');
+
+        function setTheme(theme) {
+            if (theme === 'light') {
+                lightLink.disabled = false;
+                darkLink.disabled = true;
+            } else if (theme === 'dark') {
+                lightLink.disabled = true;
+                darkLink.disabled = false;
+            }
+            // 保存用户偏好，刷新后保留
+            localStorage.setItem('ui-theme', theme);
+        }
+
+        // 页面加载时读取已保存的主题
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('ui-theme');
+            if (saved) setTheme(saved);
+
+            // ========== 标签页切换逻辑 ==========
+            document.querySelectorAll('.tab-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const target = item.dataset.pane;
+                    // 切换标签选中态
+                    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('selected'));
+                    item.classList.add('selected');
+                    // 切换内容显示
+                    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

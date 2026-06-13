@@ -1,0 +1,183 @@
+<Window x:Class="I2CS.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="I2CS.UI - 主题切换演示" Height="500" Width="640">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{DynamicResource CardBackground}" BorderBrush="{DynamicResource CardBorderBrush}" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,16" VerticalAlignment="Center">
+                <TextBlock Text="主题切换:" Foreground="{DynamicResource TextForeground}" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <Button x:Name="LightThemeButton" Content="浅色主题" Style="{DynamicResource PrimaryButtonStyle}" Margin="0,0,12,0" VerticalAlignment="Center" Click="SwitchToLightTheme"/>
+                <Button x:Name="DarkThemeButton" Content="深色主题" Style="{DynamicResource PrimaryButtonStyle}" Margin="0" VerticalAlignment="Center" Click="SwitchToDarkTheme"/>
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="40,20">
+                <TextBlock Text="I2CS.UI 主题演示" Style="{DynamicResource HeadingTextBlockStyle}"/>
+                <TextBlock Text="这是一个完整的WPF主题切换演示应用。" Style="{DynamicResource BodyTextBlockStyle}"/>
+
+                <Border Style="{DynamicResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Text="按钮控件" Style="{DynamicResource CardHeadingStyle}"/>
+                        <TextBlock Text="主要按钮" Foreground="{DynamicResource TextForeground}" Margin="0,16,0,4" FontWeight="SemiBold"/>
+                        <Button Content="主要按钮" Style="{DynamicResource PrimaryButtonStyle}"/>
+                        <Button Content="主要按钮 (禁用)" Style="{DynamicResource PrimaryButtonStyle}" IsEnabled="False"/>
+                        
+                        <TextBlock Text="次要按钮" Foreground="{DynamicResource TextForeground}" Margin="0,16,0,4" FontWeight="SemiBold"/>
+                        <Button Content="次要按钮" Style="{DynamicResource SecondaryButtonStyle}"/>
+                        <Button Content="次要按钮 (禁用)" Style="{DynamicResource SecondaryButtonStyle}" IsEnabled="False"/>
+                        
+                        <TextBlock Text="微型按钮" Foreground="{DynamicResource TextForeground}" Margin="0,16,0,4" FontWeight="SemiBold"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="微型按钮" Style="{DynamicResource MiniButtonStyle}" Margin="0,0,8,0"/>
+                            <Button Content="禁用" Style="{DynamicResource MiniButtonStyle}" IsEnabled="False"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{DynamicResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Text="标签控件" Style="{DynamicResource CardHeadingStyle}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,16">
+                            <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                <TextBlock Text="A" Style="{DynamicResource TagTextStyle}"/>
+                            </Border>
+                            <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                <TextBlock Text="短标签" Style="{DynamicResource TagTextStyle}"/>
+                            </Border>
+                            <Border Style="{DynamicResource TagBorderStyle}">
+                                <TextBlock Text="长文字测试标签" Style="{DynamicResource TagTextStyle}"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{DynamicResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Text="表单控件" Style="{DynamicResource CardHeadingStyle}"/>
+                        <ComboBox Style="{DynamicResource PrimaryComboBoxStyle}" Margin="0,16" SelectedIndex="0">
+                            <ComboBoxItem>选项 A</ComboBoxItem>
+                            <ComboBoxItem>选项 B</ComboBoxItem>
+                            <ComboBoxItem>选项 C</ComboBoxItem>
+                        </ComboBox>
+                        <ToggleButton Style="{DynamicResource PrimaryToggleButtonStyle}" Margin="0,8"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8">
+                            <RadioButton Content="选项 A" Style="{DynamicResource PrimaryRadioButtonStyle}" IsChecked="True" Margin="0,0,16,0"/>
+                            <RadioButton Content="选项 B" Style="{DynamicResource PrimaryRadioButtonStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,8">
+                            <CheckBox Content="选项 1" Style="{DynamicResource PrimaryCheckBoxStyle}" IsChecked="True" Margin="0,0,16,0"/>
+                            <CheckBox Content="选项 2" Style="{DynamicResource PrimaryCheckBoxStyle}"/>
+                        </StackPanel>
+                        <ProgressBar Value="75" Style="{DynamicResource PrimaryProgressBarStyle}" Margin="0,16"/>
+                        <Slider Value="50" Minimum="0" Maximum="100" Style="{DynamicResource PrimarySliderStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{DynamicResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Text="输入控件" Style="{DynamicResource CardHeadingStyle}"/>
+                        <TextBox Style="{DynamicResource PrimaryTextBoxStyle}" Margin="0,16" Text="普通输入框"/>
+                        <TextBox Style="{DynamicResource PrimaryTextBoxStyle}" Margin="0,8" Text="禁用输入框" IsEnabled="False"/>
+                        <TextBox Style="{DynamicResource PrimaryTextBoxStyle}" Margin="0,8" Height="100" TextWrapping="Wrap" Text="多行输入框，支持输入更多文字内容，并且可以自动换行显示。"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{DynamicResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Text="选项卡控件" Style="{DynamicResource CardHeadingStyle}"/>
+                        <TabControl Style="{DynamicResource PrimaryTabControlStyle}" Margin="0,16">
+                            <TabItem Style="{DynamicResource PrimaryTabItemStyle}" Header="选项卡 1">
+                                <StackPanel>
+                                    <TextBlock Text="这是选项卡 1 的内容区域。" Margin="0,0,0,8"/>
+                                    <TextBlock Text="选项卡控件支持在多个内容页面之间切换。"/>
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Style="{DynamicResource PrimaryTabItemStyle}" Header="选项卡 2">
+                                <StackPanel>
+                                    <TextBlock Text="这是选项卡 2 的内容区域。" Margin="0,0,0,8"/>
+                                    <Button Content="点击按钮" Style="{DynamicResource PrimaryButtonStyle}"/>
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Style="{DynamicResource PrimaryTabItemStyle}" Header="选项卡 3">
+                                <StackPanel>
+                                    <TextBlock Text="这是选项卡 3 的内容区域。" Margin="0,0,0,8"/>
+                                    <TextBox Style="{DynamicResource PrimaryTextBoxStyle}" Text="选项卡中的输入框"/>
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{DynamicResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Text="折叠面板" Style="{DynamicResource CardHeadingStyle}"/>
+                        <Expander Style="{DynamicResource PrimaryExpanderStyle}" Margin="0,16,0,8" Header="展开查看更多信息">
+                            <StackPanel Margin="0,16,0,0">
+                                <TextBlock Text="这是折叠面板的内容区域。" Margin="0,0,0,8"/>
+                                <TextBlock Text="折叠面板可以展开和收起，节省空间。"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Style="{DynamicResource PrimaryExpanderStyle}" Margin="0,8" Header="高级设置">
+                            <StackPanel Margin="0,16,0,0">
+                                <CheckBox Content="启用高级功能" Style="{DynamicResource PrimaryCheckBoxStyle}" Margin="0,0,0,8"/>
+                                <Slider Value="50" Minimum="0" Maximum="100" Style="{DynamicResource PrimarySliderStyle}"/>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{DynamicResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Text="横向滚动条" Style="{DynamicResource CardHeadingStyle}"/>
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" Margin="0,16">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 1" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 2" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 3" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 4" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 5" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 6" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 7" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 8" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 9" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 10" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 11" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                                <Border Style="{DynamicResource TagBorderStyle}" Margin="0,0,8,0">
+                                    <TextBlock Text="项目 12" Style="{DynamicResource TagTextStyle}"/>
+                                </Border>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
