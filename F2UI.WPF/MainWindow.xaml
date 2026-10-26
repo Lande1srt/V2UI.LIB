@@ -3,155 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="F2CS.UI 样式演示"
         Height="700" Width="900"
-        WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        Background="Transparent">
-    <Border CornerRadius="8" Background="{DynamicResource BodyBackgroundGradient}" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1">
-        <Grid>
+        WindowStartupLocation="CenterScreen">
+    <Border Background="{DynamicResource BodyBackgroundGradient}">
+        <Grid Margin="8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="32"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- 自定义标题栏 -->
-            <Grid Grid.Row="0" Background="{DynamicResource CardBackground}" MouseDown="TitleBar_MouseDown">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="32"/>
-                    <ColumnDefinition Width="32"/>
-                    <ColumnDefinition Width="32"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" 
-                           Text="F2CS.UI 样式演示" 
-                           VerticalAlignment="Center" 
-                           Margin="10,0,0,0"
-                           Foreground="{DynamicResource ControlForeground}"
-                           FontSize="12"
-                           FontWeight="SemiBold"/>
-                
-                <Button Grid.Column="1" 
-                        Content="&#xE949;" 
-                        FontFamily="Segoe MDL2 Assets" 
-                        FontSize="10"
-                        Background="Transparent"
-                        Foreground="{DynamicResource ControlForeground}"
-                        BorderThickness="0"
-                        Padding="0"
-                        Margin="0"
-                        Height="32"
-                        Width="32"
-                        Click="Minimize_Click"
-                        Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                Width="{TemplateBinding Width}" 
-                                                Height="{TemplateBinding Height}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="{DynamicResource ControlHoverBackground}"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                
-                <Button Grid.Column="2" 
-                        Content="&#xE923;" 
-                        FontFamily="Segoe MDL2 Assets" 
-                        FontSize="10"
-                        Background="Transparent"
-                        Foreground="{DynamicResource ControlForeground}"
-                        BorderThickness="0"
-                        Padding="0"
-                        Margin="0"
-                        Height="32"
-                        Width="32"
-                        Click="Maximize_Click"
-                        Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                Width="{TemplateBinding Width}" 
-                                                Height="{TemplateBinding Height}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="{DynamicResource ControlHoverBackground}"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                
-                <Button Grid.Column="3" 
-                        Content="&#xE8BB;" 
-                        FontFamily="Segoe MDL2 Assets" 
-                        FontSize="10"
-                        Background="Transparent"
-                        Foreground="{DynamicResource ControlForeground}"
-                        BorderThickness="0"
-                        Padding="0"
-                        Margin="0"
-                        Height="32"
-                        Width="32"
-                        Click="Close_Click"
-                        Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                Width="{TemplateBinding Width}" 
-                                                Height="{TemplateBinding Height}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#E81123"/>
-                                                <Setter Property="Foreground" Value="White"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
-            </Grid>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                <Button Style="{StaticResource PrimaryButton}" Content="亮色主题" Click="LightTheme_Click" Margin="0,0,10,0"/>
+                <Button Style="{StaticResource PrimaryButton}" Content="暗色主题" Click="DarkTheme_Click"/>
+            </StackPanel>
 
-            <!-- 主内容区域 -->
-            <ScrollViewer Grid.Row="1" Margin="20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
-                        <Button Content="亮色主题" Click="LightTheme_Click" Margin="0,0,10,0"/>
-                        <Button Content="暗色主题" Click="DarkTheme_Click"/>
-                    </StackPanel>
-
-                    <TabControl Grid.Row="1" Margin="0,0,0,20" Height="500">
+            <TabControl Grid.Row="1" Margin="0,0,0,20" Height="500">
                     <TabItem Header="基础控件">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel Margin="10">
@@ -159,7 +25,7 @@
                                     <StackPanel Orientation="Horizontal" Margin="10">
                                         <Button Content="普通按钮" Margin="0,0,10,0"/>
                                         <Button Content="禁用按钮" IsEnabled="False" Margin="0,0,10,0"/>
-                                        <Button Content="悬停效果" Margin="0,0,10,0"/>
+                                        <Button Style="{StaticResource HoverStateButton}" Content="悬停效果" Margin="0,0,10,0"/>
                                     </StackPanel>
                                 </GroupBox>
 
@@ -273,15 +139,6 @@
                         </ScrollViewer>
                     </TabItem>
                 </TabControl>
-
-                <TextBlock Grid.Row="2" 
-                           Text="F2CS.UI 样式库 - 基于 ISRTOOL 主题提取" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Bottom"
-                           Foreground="{DynamicResource TextForeground}"
-                           FontSize="12"/>
-                </Grid>
-            </ScrollViewer>
-        </Grid>
+            </Grid>
     </Border>
 </Window>

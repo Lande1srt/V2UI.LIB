@@ -24,10 +24,11 @@
         <GradientStop Color="#0284C7" Offset="1"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="ButtonDisabledBackground" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#7DD3FC" Offset="0"/>
-        <GradientStop Color="#38BDF8" Offset="1"/>
+        <GradientStop Color="#E5E7EB" Offset="0"/>
+        <GradientStop Color="#D1D5DB" Offset="1"/>
     </LinearGradientBrush>
     <SolidColorBrush x:Key="ButtonForeground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ButtonDisabledForeground" Color="#9CA3AF"/>
     <SolidColorBrush x:Key="ControlBackground" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="ControlBorderBrush" Color="#BAE6FD"/>
     <SolidColorBrush x:Key="ControlHoverBackground" Color="#F0F9FF"/>
@@ -47,17 +48,17 @@
         <Setter Property="Foreground" Value="{DynamicResource BodyForeground}"/>
     </Style>
 
-    <!-- 按钮样式 -->
+    <!-- 按钮样式（默认：白底黑字） -->
     <Style TargetType="Button">
         <Setter Property="Margin" Value="0,0,0,0"/>
-        <Setter Property="Padding" Value="6,2"/>
+        <Setter Property="Padding" Value="8,4"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background" Value="{DynamicResource ControlBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource ControlForeground}"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Height" Value="24"/>
+        <Setter Property="Height" Value="26"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -68,7 +69,8 @@
                             CornerRadius="4"
                             Padding="{TemplateBinding Padding}"
                             Height="{TemplateBinding Height}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -77,16 +79,56 @@
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource ControlPressedBackground}"/>
-                            <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{DynamicResource ToggleOnBackground}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource ButtonDisabledBackground}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource ControlDisabledForeground}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ButtonDisabledForeground}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!-- 主要按钮（高亮/特殊按钮） -->
+    <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ToggleOnBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4"
+                            Padding="{TemplateBinding Padding}"
+                            Height="{TemplateBinding Height}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource ButtonHoverBackground}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource ControlPressedBackground}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.6"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ButtonDisabledForeground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- 常驻悬停态按钮（视觉始终处于 IsMouseOver） -->
+    <Style x:Key="HoverStateButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="{DynamicResource ControlHoverBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ToggleOnBackground}"/>
     </Style>
 
     <!-- ComboBox样式 -->
@@ -162,6 +204,13 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource ButtonDisabledBackground}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ButtonDisabledForeground}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource ToggleOffBackground}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- ComboBoxItem样式 -->
@@ -189,7 +238,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsHighlighted" Value="True">
                             <Setter TargetName="Border" Property="Background" Value="{DynamicResource HighlightBackground}"/>
-                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ControlForeground}"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="Border" Property="Background" Value="{DynamicResource SelectionBackground}"/>
@@ -197,7 +246,7 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="Background" Value="{DynamicResource HighlightBackground}"/>
-                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ControlForeground}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -231,16 +280,67 @@
                         <Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Setter TargetName="TextBoxBorder" Property="BorderBrush" Value="{DynamicResource ToggleOnBackground}"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="TextBoxBorder" Property="Background" Value="{DynamicResource ButtonDisabledBackground}"/>
+                            <Setter TargetName="TextBoxBorder" Property="BorderBrush" Value="{DynamicResource ToggleOffBackground}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource ButtonDisabledForeground}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- CheckBox样式 -->
     <Style TargetType="CheckBox">
         <Setter Property="Foreground" Value="{DynamicResource ControlForeground}"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border x:Name="CheckBorder"
+                                Width="16" Height="16"
+                                Margin="0,0,6,0"
+                                Background="{DynamicResource ControlBackground}"
+                                BorderBrush="{DynamicResource ToggleOffBackground}"
+                                BorderThickness="1"
+                                CornerRadius="3">
+                            <Path x:Name="CheckMark"
+                                  Width="8" Height="8"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  Data="M 1 4 L 3 6 L 7 2"
+                                  Stroke="{DynamicResource ToggleThumbBackground}"
+                                  StrokeThickness="1.5"
+                                  Stretch="Fill"
+                                  Visibility="Collapsed"/>
+                        </Border>
+                        <ContentPresenter VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckBorder" Property="Background" Value="{DynamicResource ToggleOnBackground}"/>
+                            <Setter TargetName="CheckBorder" Property="BorderBrush" Value="{DynamicResource ToggleOnBackground}"/>
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="CheckBorder" Property="BorderBrush" Value="{DynamicResource ToggleOnBackground}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource ControlDisabledForeground}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="CheckBorder" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- ProgressBar样式 -->
@@ -276,6 +376,27 @@
         <Setter Property="BorderThickness" Value="0,1,0,0"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="Background" Value="{DynamicResource BodyBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid x:Name="templateRoot" ClipToBounds="true" SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="ColumnDefinition0"/>
+                            <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                            <RowDefinition x:Name="RowDefinition1" Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TabPanel x:Name="headerPanel" Background="Transparent" Grid.Column="0" IsItemsHost="true" Margin="2,2,2,0" Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                        <Border x:Name="contentPresenter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{DynamicResource BodyBackground}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- TabItem样式 -->

@@ -1,6 +1,5 @@
 using System;
 using System.Windows;
-using System.Windows.Input;
 
 namespace F2CS.UI
 {
@@ -27,36 +26,6 @@ namespace F2CS.UI
             {
                 Source = new Uri("Themes/DarkTheme.xaml", UriKind.Relative)
             });
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Maximize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                if (e.ClickCount == 2)
-                {
-                    Maximize_Click(sender, e);
-                }
-                else
-                {
-                    DragMove();
-                }
-            }
         }
     }
 }

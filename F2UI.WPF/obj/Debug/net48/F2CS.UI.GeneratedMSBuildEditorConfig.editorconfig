@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = F2CS.UI
-build_property.ProjectDir = h:\Gitdemo\F2CS.UI\
+build_property.ProjectDir = H:\Gitdemo\V2UI.LIB\F2UI.WPF\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false
