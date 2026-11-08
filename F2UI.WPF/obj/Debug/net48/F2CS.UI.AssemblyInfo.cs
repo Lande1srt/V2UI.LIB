@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("F2CS.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f8cf2cc0a35048dc40dbf1e2ad4adb6980820f4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+881e8c92ba08032af1b0b0a635957e5df5af0bc3")]
 [assembly: System.Reflection.AssemblyProductAttribute("F2CS.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("F2CS.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
